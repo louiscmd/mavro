@@ -3,27 +3,14 @@
 /* ---------- tokens ---------- */
 
 :root {
-  --paper: #f6f3ee; /* warm off-white */
-  --paper-raised: #fbf9f5;
+  --paper: #ffffff; /* white */
+  --paper-raised: #ffffff;
   --ink: #2b2927; /* charcoal */
-  --muted: #7a756e; /* stone gray */
-  --line: #dcd6cd; /* 1px dividers */
-  --stone: #ebe7e1; /* image ground */
+  --muted: #7a7672; /* stone gray */
+  --line: #e6e4e1; /* 1px dividers */
+  --stone: #ffffff; /* image ground */
   --forest: #3e5244; /* the one accent */
-  --scrim: rgb(28 26 24 / 0.28);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #181614; /* warm near-black */
-    --paper-raised: #1f1d1a;
-    --ink: #e8e3db;
-    --muted: #9b958c;
-    --line: #34302b;
-    --stone: #24211e;
-    --forest: #93a998;
-    --scrim: rgb(0 0 0 / 0.5);
-  }
+  --scrim: rgb(28 26 24 / 0.22);
 }
 
 @theme inline {
@@ -45,7 +32,7 @@
 /* ---------- base ---------- */
 
 html {
-  color-scheme: light dark;
+  color-scheme: light;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -69,16 +56,9 @@ body {
   outline-offset: 4px;
 }
 
-/* Product photos sit on a light studio ground; multiplying them onto the warm
-   paper tone removes the cold gray rectangle in light mode. */
+/* Product photos sit on a light studio ground; multiply blends them into the page. */
 .photo {
   mix-blend-mode: multiply;
-}
-@media (prefers-color-scheme: dark) {
-  .photo {
-    mix-blend-mode: normal;
-    filter: brightness(0.9);
-  }
 }
 
 /* ---------- motion ---------- */

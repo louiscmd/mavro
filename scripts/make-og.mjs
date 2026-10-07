@@ -8,7 +8,7 @@ import sharp from "sharp";
 const root = path.resolve(import.meta.dirname, "..");
 const src = path.join(root, "public/products");
 const out = path.join(root, "public/og");
-const PAPER = { r: 0xf6, g: 0xf3, b: 0xee };
+const PAPER = { r: 0xff, g: 0xff, b: 0xff };
 fs.mkdirSync(out, { recursive: true });
 
 async function card(file, target) {
