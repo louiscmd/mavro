@@ -7,6 +7,8 @@ import { ProductGallery } from "@/components/ProductGallery";
 import { ProductPurchase } from "@/components/ProductPurchase";
 import { ProductCard } from "@/components/ProductCard";
 import { SizeGuide } from "@/components/SizeGuide";
+import { Rise } from "@/components/Motion";
+import { Reveal } from "@/components/Reveal";
 import { getDictionary } from "@/lib/i18n";
 import { getProduct, getProducts } from "@/lib/products";
 import { siteUrl } from "@/lib/site";
@@ -76,25 +78,26 @@ export default async function ProductPage({ params }: Props) {
           <div className="px-5 pb-8 sm:px-0 lg:pt-16">
             <Link
               href="/places"
-              className="text-[0.8125rem] tracking-wide text-muted transition-colors duration-500 hover:text-ink"
+              className="group text-[0.8125rem] tracking-wide text-muted transition-colors duration-500 hover:text-ink"
             >
-              ← {t.back}
+              <span className="inline-block transition-transform duration-700 ease-calm group-hover:-translate-x-1">←</span>{" "}
+              {t.back}
             </Link>
 
             <h1 className="mt-10 text-[0.8125rem] tracking-[0.12em] text-muted">{product.placeName}</h1>
-            <p className="fade-in mt-4 font-serif text-[clamp(2.5rem,7vw,4rem)] italic leading-[1.02]">
-              {product.motto}
+            <p className="mt-4 font-serif text-[clamp(2.5rem,7vw,4rem)] italic leading-[1.02]">
+              <Rise text={product.motto} base={250} step={90} />
             </p>
-            <p className="mt-6 text-[0.8125rem] tracking-wide text-muted">
+            <p className="fade-in-late mt-6 text-[0.8125rem] tracking-wide text-muted">
               {product.season} · {product.setting}
             </p>
 
-            <div className="my-10 h-px bg-line" />
-
-            <p className="max-w-[30rem] text-[0.9375rem] leading-[1.85]">{product.story}</p>
-
-            <div className="mt-12 max-w-[30rem]">
-              <ProductPurchase product={product} />
+            <div className="fade-in-later">
+              <div className="my-10 h-px bg-line" />
+              <p className="max-w-[30rem] text-[0.9375rem] leading-[1.85]">{product.story}</p>
+              <div className="mt-12 max-w-[30rem]">
+                <ProductPurchase product={product} />
+              </div>
             </div>
 
             <div className="mt-12 max-w-[30rem] border-t border-line">
@@ -112,14 +115,15 @@ export default async function ProductPage({ params }: Props) {
       </div>
 
       <section aria-labelledby="more-title" className="mx-auto mt-32 max-w-[1440px] px-5 sm:px-8 lg:px-12">
-        <div className="mb-14 border-t border-line pt-8">
-          <h2 id="more-title" className="font-serif text-3xl italic">
+        <Reveal className="mb-14">
+          <div className="draw" />
+          <h2 id="more-title" className="pt-8 font-serif text-3xl italic">
             {t.more}
           </h2>
-        </div>
+        </Reveal>
         <ul className="grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 xl:grid-cols-3">
-          {more.map((p) => (
-            <ProductCard key={p.slug} product={p} />
+          {more.map((p, i) => (
+            <ProductCard key={p.slug} product={p} index={i} />
           ))}
         </ul>
       </section>

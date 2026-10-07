@@ -63,7 +63,9 @@ function Frame({ view, visible, priority }: { view: View; visible: boolean; prio
     view.detail && d ? { transform: `scale(${d.zoom})`, transformOrigin: `${d.x}% ${d.y}%` } : undefined;
   return (
     <div
-      className={`absolute inset-0 transition-opacity duration-1000 ease-calm ${visible ? "opacity-100" : "opacity-0"}`}
+      className={`absolute inset-0 transition-[opacity,transform] duration-[1400ms] ease-calm ${
+        visible ? "scale-100 opacity-100" : "scale-[1.03] opacity-0"
+      }`}
       aria-hidden={!visible}
     >
       <Image

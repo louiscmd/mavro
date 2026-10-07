@@ -22,5 +22,5 @@ async function card(file, target) {
 for (const file of fs.readdirSync(src).filter((f) => /\.(webp|jpe?g|png)$/i.test(f))) {
   await card(file, path.join(out, `${path.parse(file).name}.jpg`));
 }
-await card("cabin.webp", path.join(out, "default.jpg"));
+await card("boathouse.webp", path.join(out, "default.jpg"));
 console.log("og images written to public/og");

@@ -113,9 +113,13 @@ export function BagPanel() {
           </div>
         ) : (
           <>
-            <ul className="flex-1 divide-y divide-line overflow-y-auto px-6">
-              {lines.map(({ item, product }) => (
-                <li key={`${item.slug}-${item.size}`} className="flex gap-4 py-6">
+            <ul key={isOpen ? "open" : "closed"} className="stagger flex-1 divide-y divide-line overflow-y-auto px-6">
+              {lines.map(({ item, product }, i) => (
+                <li
+                  key={`${item.slug}-${item.size}`}
+                  style={{ "--i": i } as React.CSSProperties}
+                  className="flex gap-4 py-6"
+                >
                   <Link
                     href={`/places/${product.slug}`}
                     onClick={close}

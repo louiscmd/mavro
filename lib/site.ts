@@ -3,7 +3,7 @@ export const site = {
   instagram: "https://www.instagram.com/mavro",
   email: "hello@mavro.studio",
   /** Hoodie used in the home hero. */
-  heroSlug: "cabin",
+  heroSlug: "boathouse",
 };
 
 export function siteUrl() {

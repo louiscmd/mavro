@@ -21,7 +21,7 @@ export function Footer() {
           <ul className="flex flex-wrap gap-x-8 gap-y-3 text-[0.8125rem] tracking-wide">
             {links.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="transition-opacity duration-500 hover:opacity-60">
+                <Link href={l.href} className="link-line">
                   {l.label}
                 </Link>
               </li>
@@ -31,7 +31,7 @@ export function Footer() {
                 href={site.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity duration-500 hover:opacity-60"
+                className="link-line"
               >
                 {t.instagram}
               </a>

@@ -38,7 +38,7 @@ export function Reveal({ children, className = "", image = false, delay = 0, as 
     <Tag
       ref={ref}
       data-visible={visible}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={delay ? ({ transitionDelay: `${delay}ms`, "--reveal-delay": `${delay}ms` } as React.CSSProperties) : undefined}
       className={`reveal ${image ? "reveal-image" : ""} ${className}`}
     >
       {children}
