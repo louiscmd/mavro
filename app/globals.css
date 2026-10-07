@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* ---------- tokens ---------- */
+
+:root {
+  --paper: #f6f3ee; /* warm off-white */
+  --paper-raised: #fbf9f5;
+  --ink: #2b2927; /* charcoal */
+  --muted: #7a756e; /* stone gray */
+  --line: #dcd6cd; /* 1px dividers */
+  --stone: #ebe7e1; /* image ground */
+  --forest: #3e5244; /* the one accent */
+  --scrim: rgb(28 26 24 / 0.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #181614; /* warm near-black */
+    --paper-raised: #1f1d1a;
+    --ink: #e8e3db;
+    --muted: #9b958c;
+    --line: #34302b;
+    --stone: #24211e;
+    --forest: #93a998;
+    --scrim: rgb(0 0 0 / 0.5);
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-stone: var(--stone);
+  --color-forest: var(--forest);
+  --color-scrim: var(--scrim);
+
+  --font-serif: var(--font-cormorant), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-calm: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- base ---------- */
+
+html {
+  color-scheme: light dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--forest);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+
+/* Product photos sit on a light studio ground; multiplying them onto the warm
+   paper tone removes the cold gray rectangle in light mode. */
+.photo {
+  mix-blend-mode: multiply;
+}
+@media (prefers-color-scheme: dark) {
+  .photo {
+    mix-blend-mode: normal;
+    filter: brightness(0.9);
+  }
+}
+
+/* ---------- motion ---------- */
+
+/* Only hide content when JS is running, so nothing is lost without it. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 1.4s var(--ease-calm),
+    transform 1.4s var(--ease-calm);
+}
+.js .reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+.js .reveal-image img {
+  transform: scale(1.035);
+  transition: transform 2.2s var(--ease-calm);
+}
+.js .reveal-image[data-visible="true"] img {
+  transform: scale(1);
+}
+
+.fade-in {
+  animation: fade-in 1.6s var(--ease-calm) both;
+}
+.fade-in-late {
+  animation: fade-in 1.6s var(--ease-calm) 0.5s both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js .reveal,
+  .js .reveal-image img {
+    opacity: 1;
+    transform: none;
+  }
+}
